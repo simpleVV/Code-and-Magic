@@ -11,7 +11,6 @@ var BAR_HEIGHT_MAX = 150;
 var BAR_WIDTH = 40;
 var BAR_GAP = 50;
 var TEXT_HEIGHT = 25;
-var randomBlue = Math.floor(Math.random() * 255);
 
 // Поиск максимального времени
 var getMaxElement = function (arr) {
@@ -62,7 +61,7 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'rgba(0, 0, ' + randomBlue + ')';
+      ctx.fillStyle = 'rgba(0, 0, ' + Math.floor(Math.random() * 255) + ')';
     }
 
     ctx.fillRect(CLOUD_X + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + CLOUD_HEIGHT - GAP - TEXT_HEIGHT - (BAR_HEIGHT_MAX * times[i]) / maxTime, BAR_WIDTH, (BAR_HEIGHT_MAX * times[i]) / maxTime);
