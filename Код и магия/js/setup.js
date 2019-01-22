@@ -27,6 +27,13 @@ var setupWizard = setup.querySelector('.setup-wizard');
 var wizardCoat = setupWizard.querySelector('.wizard-coat');
 var wizardEyes = setupWizard.querySelector('.wizard-eyes');
 var wizardFireball = setup.querySelector('.setup-fireball-wrap');
+var dialogHandler = setup.querySelector('.upload');
+
+// Устанавливает позицию окна установки по умолчанию
+var setDefaultSetupCoords = function () {
+  setup.style.left = '50%';
+  setup.style.top = '80px';
+};
 
 // Открытие и закрытие окна попап
 var onPopupPressEsc = function (evt) {
@@ -45,6 +52,7 @@ var openPopup = function () {
 
 var closePopup = function () {
   setup.classList.add('hidden');
+  setDefaultSetupCoords();
   document.removeEventListener('keydown', onPopupPressEsc);
 };
 
@@ -67,6 +75,56 @@ setupClose.addEventListener('keydown', function (evt) {
     closePopup();
   }
 });
+
+// Реализация перетаскивания окна настройки персонажа.
+
+dialogHandler.addEventListener('mousedown', function (evt) {
+  evt.preventDefault();
+
+  var startCoords = {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+
+  var dragged = false;
+
+  var onMouseMove = function (moveEvt) {
+    moveEvt.preventDefault();
+    dragged = true;
+
+    var shift = {
+      x: startCoords.x - moveEvt.clientX,
+      y: startCoords.y - moveEvt.clientY
+    };
+
+    startCoords = {
+      x: moveEvt.clientX,
+      y: moveEvt.clientY
+    };
+
+    setup.style.top = (setup.offsetTop - shift.y) + 'px';
+    setup.style.left = (setup.offsetLeft - shift.x) + 'px';
+  };
+
+  var onMouseUp = function (upEvt) {
+    upEvt.preventDefault();
+
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+
+    if (dragged) {
+      var onClickPreventDefault = function (clickEvt) {
+        clickEvt.preventDefault();
+        dialogHandler.removeEventListener('click', onClickPreventDefault);
+      };
+      dialogHandler.addEventListener('click', onClickPreventDefault);
+    }
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+});
+
 
 // Настройка персонажа
 // Смена цвета элемента
