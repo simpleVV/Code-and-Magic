@@ -3,8 +3,9 @@
 
 // Получение и отрисовка разных волшебников
 (function () {
-  window.dialogSetup.querySelector('.setup-similar').classList.remove('hidden');
-  var similarListElement = window.dialogSetup.querySelector('.setup-similar-list');
+  var setupSimilar = document.querySelector('.setup-similar');
+  setupSimilar.classList.remove('hidden');
+  var similarListElement = setupSimilar.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');

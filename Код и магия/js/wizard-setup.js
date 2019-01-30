@@ -2,10 +2,11 @@
 
 // Настройка персонажа
 (function () {
-  var setupWizard = window.dialogSetup.querySelector('.setup-wizard');
+  var setupPlayer = document.querySelector('.setup-player')
+  var setupWizard = setupPlayer.querySelector('.setup-wizard');
   var wizardCoat = setupWizard.querySelector('.wizard-coat');
   var wizardEyes = setupWizard.querySelector('.wizard-eyes');
-  var wizardFireball = window.dialogSetup.querySelector('.setup-fireball-wrap');
+  var wizardFireball = setupPlayer.querySelector('.setup-fireball-wrap');
 
   window.wizardSetup = {
     WIZARD_COAT_COLORS: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
@@ -15,7 +16,7 @@
 
   // Смена цвета элемента
   var changeElementColor = function (element, color, inputName) {
-    var inputData = window.dialogSetup.querySelector('input[name="' + inputName + '"]');
+    var inputData = setupPlayer.querySelector('input[name="' + inputName + '"]');
     if (element === wizardFireball) {
       element.style.backgroundColor = color;
     } else {
