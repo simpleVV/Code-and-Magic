@@ -27,6 +27,14 @@
       var fragment = document.createDocumentFragment();
       fragment.appendChild(elements);
       parentElement.appendChild(fragment);
+    },
+    // Выводит сообщение об ошибке при отправки и получении данных с сервера.
+    onError: function (errorMessage) {
+      var errorPopup = document.createElement('div');
+      errorPopup.style = 'position: absolute; left: 0; right: 0; z-index: 100; margin: 0, auto; font-size: 30px; text-align: center; color: red';
+
+      errorPopup.textContent = errorMessage;
+      document.body.insertAdjacentElement('afterbegin', errorPopup);
     }
   };
 })();

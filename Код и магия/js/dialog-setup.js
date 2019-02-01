@@ -98,4 +98,13 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+  var form = dialogSetup.querySelector('.setup-wizard-form');
+  form.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(form), function () {
+      dialogSetup.classList.add('hidden');
+    }, window.utils.onError);
+    evt.preventDefault();
+  });
+
 })();
