@@ -26,14 +26,20 @@
     }
   };
 
-  // Если произошла ошибка при загрузки волшебников вывести сообщение.
-  // var onError = function (errorMessage) {
-  //   var errorPopup = document.createElement('div');
-  //   errorPopup.style = 'position: absolute; left: 0; right: 0; z-index: 100; margin: 0, auto; font-size: 30px; text-align: center; color: red';
-  //
-  //   errorPopup.textContent = errorMessage;
-  //   document.body.insertAdjacentElement('afterbegin', errorPopup);
-  // };
-
   window.backend.load(onSuccess, window.utils.onError);
+
+
+// Загрузка волщебников с сервера с помошью JSONP
+  // var DATA_URL = 'https://js.dump.academy/code-and-magick/data?callback=getWizardCallback';
+  //
+  // window.getWizardCallback = function (data) {
+  //   for (var i = 0; i < WIZARD_NUMBER; i++) {
+  //     window.utils.addElements(renderWizard(data[i]), similarListElement);
+  //     setupSimilar.classList.remove('hidden');
+  //   }
+  // };
+  //
+  // var loader = document.createElement('script');
+  // loader.src = DATA_URL;
+  // document.body.append(loader);
 })();
