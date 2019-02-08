@@ -16,7 +16,7 @@
         action();
       }
     },
-    getRandomValue: function (maxValue, minValue) { // Функия получения случайного значения
+    getRandomValue: function (maxValue, minValue) { // Функция получения случайного значения
       if (minValue) {
         return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
       } else {

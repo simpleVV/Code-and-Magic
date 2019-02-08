@@ -1,12 +1,14 @@
 'use strict';
 
 (function () {
-
+  // Модуль получения и сохранения данных
 window.backend = {
+  // загрузка данных с сервера
     load: function (onLoad, onError) {
       var URL = 'https://js.dump.academy/code-and-magick/data';
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
+
       xhr.addEventListener('load', function () {
         if (xhr.status === 200) {
           onLoad(xhr.response);
@@ -28,6 +30,7 @@ window.backend = {
       xhr.open('GET', URL);
       xhr.send();
     },
+    // Сохранение данных на сервер
     save: function (data, onLoad, onError) {
       var URL = 'https://js.dump.academy/code-and-magick';
       var xhr = new XMLHttpRequest();

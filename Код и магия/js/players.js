@@ -29,7 +29,7 @@
   window.backend.load(onSuccess, window.utils.onError);
 
 
-// Загрузка волщебников с сервера с помошью JSONP
+// Загрузка волшебников с сервера с помощь JSONP
   // var DATA_URL = 'https://js.dump.academy/code-and-magick/data?callback=getWizardCallback';
   //
   // window.getWizardCallback = function (data) {

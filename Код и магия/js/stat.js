@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  // Разметка и отрисовка облака статистики
   var CLOUD_WIDTH = 420;
   var CLOUD_HEIGHT = 270;
   var CLOUD_X = 100;
@@ -30,7 +31,7 @@
     } return maxTime;
   };
 
-  // Ресуем облако
+  // Рисуем облако
   var renderCloud = function (ctx, x, y, color) {
     ctx.fillStyle = color;
     ctx.beginPath();
