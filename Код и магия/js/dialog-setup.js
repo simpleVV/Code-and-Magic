@@ -8,7 +8,7 @@
   var setupClose = dialogSetup.querySelector('.setup-close');
   var setupUserName = dialogSetup.querySelector('.setup-user-name');
 
-  // Устанавливает позицию окна установки по умолчанию
+  // Устанавливает позицию окна настройки по умолчанию
   var setDefaultSetupCoords = function () {
     dialogSetup.style.left = '50%';
     dialogSetup.style.top = '80px';

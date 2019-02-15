@@ -2,7 +2,7 @@
 
 (function () {
   // Модуль получения и сохранения данных
-window.backend = {
+var backend = {
   // загрузка данных с сервера
     load: function (onLoad, onError) {
       var URL = 'https://js.dump.academy/code-and-magick/data';
@@ -52,4 +52,5 @@ window.backend = {
     }
   };
 
+  window.backend = backend;
 })();

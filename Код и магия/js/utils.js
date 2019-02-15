@@ -5,7 +5,7 @@
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
 
-  window.utils = {
+  var utils = {
     isEscEvent: function (escEvt, action) { // Выполнение кода при нажатии Esc
       if (escEvt.keyCode === ESC_KEYCODE) {
         action();
@@ -23,11 +23,6 @@
         return Math.floor(Math.random() * (maxValue));
       }
     },
-    addElements: function (elements, parentElement) { // Добавление DOM элементов на страницу
-      var fragment = document.createDocumentFragment();
-      fragment.appendChild(elements);
-      parentElement.appendChild(fragment);
-    },
     // Выводит сообщение об ошибке при отправки и получении данных с сервера.
     onError: function (errorMessage) {
       var errorPopup = document.createElement('div');
@@ -37,4 +32,6 @@
       document.body.insertAdjacentElement('afterbegin', errorPopup);
     }
   };
+
+  window.utils = utils;
 })();
