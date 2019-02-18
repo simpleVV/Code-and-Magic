@@ -3,6 +3,7 @@
 (function () {
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content;
+
     // Создание DOM элементов на основе сгенерированных образов волшебников
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
