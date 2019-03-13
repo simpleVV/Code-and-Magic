@@ -7,6 +7,7 @@
     WIZARD_EYES_COLOR: ['black', 'red', 'blue', 'yellow', 'green'],
     WIZARD_FIREBALL_COLORS: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
   };
+  var LENGTH_LIMIT = 30;
 
   var Wizard = function (data) {
     this.name = data.name;
@@ -20,7 +21,7 @@
       if (!name) {
         throw new Error('Имя не задано');
       }
-      if (name.length > 30) {
+      if (name.length > LENGTH_LIMIT) {
         throw new Error('Недопостимое значение имени мага: ' + name);
       }
       this.name = name;

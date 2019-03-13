@@ -14,12 +14,6 @@
     dialogSetup.style.top = '80px';
   };
 
-  // Конструктор координат
-  var Coords = function (x, y) {
-    this.x = x;
-    this.y = y;
-  };
-
   // Закрытие popup по нажатию на ESC
   var onPopupPressEsc = function (ecsPressEvt) {
     window.utils.isEscEvent(ecsPressEvt, closePopup)
@@ -56,6 +50,12 @@
   setupClose.addEventListener('keydown', function (enterPressEvt) {
     window.utils.isEnterEvent(enterPressEvt, closePopup);
   });
+
+  // Конструктор координат
+  var Coords = function (x, y) {
+    this.x = x;
+    this.y = y;
+  };
 
   // Реализация перетаскивания окна настройки персонажа.
   dialogHandler.addEventListener('mousedown', function (evt) {
