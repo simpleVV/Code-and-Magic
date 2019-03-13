@@ -2,7 +2,11 @@
 
 (function () {
   // Модуль получения и сохранения данных
-var backend = {
+  var SUCCESS_CODE = 200;
+  var READY_STATE_SUCCESS = 4;
+  var TIMEOUT = 10000;
+
+  var backend = {
   // загрузка данных с сервера
     load: function (onLoad, onError) {
       var URL = 'https://js.dump.academy/code-and-magick/data';
@@ -10,7 +14,7 @@ var backend = {
       xhr.responseType = 'json';
 
       xhr.addEventListener('load', function () {
-        if (xhr.status === 200) {
+        if (xhr.status === SUCCESS_CODE) {
           onLoad(xhr.response);
         } else {
           onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
@@ -25,7 +29,7 @@ var backend = {
         onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
       });
 
-      xhr.timeout = 10000;
+      xhr.timeout = TIMEOUT;
 
       xhr.open('GET', URL);
       xhr.send();
@@ -36,7 +40,7 @@ var backend = {
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
       xhr.addEventListener('load', function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
+        if (xhr.readyState === READY_STATE_SUCCESS && xhr.status === SUCCESS_CODE) {
           onLoad(xhr.response)
         } else {
           onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);

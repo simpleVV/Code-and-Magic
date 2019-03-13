@@ -3,9 +3,6 @@
 
 // Настройка персонажа и отрисовка похожих персонажей
 (function () {
-  var coatColor;
-  var eyesColor;
-  var fireBallColor;
   var wizards = [];
 
   // Фильтр похожих волшебников
@@ -13,13 +10,13 @@
   var getRank = function (wizard) {
     var rank = 0;
 
-    if (wizard.colorCoat === coatColor) {
+    if (wizard.colorCoat === window.myWizard.coatColor) {
       rank += 2;
     }
-    if (wizard.colorEyes === eyesColor) {
+    if (wizard.colorEyes === window.myWizard.eyesColor) {
       rank += 1;
     }
-    if (wizard.colorFireball === fireBallColor) {
+    if (wizard.colorFireball === window.myWizard.fireballColor) {
       rank += 1;
     }
     return rank;
@@ -37,35 +34,23 @@
   };
 
   // Сортировка волшебников по рангу и имени
-  var updateWizards = function () {
-    window.render(wizards.slice().sort(function (left, right) {
-      var rankDiff = getRank(right) - getRank(left);
-      if (rankDiff === 0) {
-        rankDiff = namesComparator(left.name, right.name);
-      }
-      return rankDiff;
-    }));
+  var wizardComparator = function (left, right) {
+    var rankDiff = getRank(right) - getRank(left);
+    return rankDiff === 0 ? namesComparator(left.name, right.name) : rankDiff;
   };
 
-  window.wizard.onEyesChange = window.debounce(function (color) {
-    eyesColor = color;
-    updateWizards();
-  });
+  var updateFilter = function () {
+    window.render(wizards.sort(wizardComparator));
+  };
 
-  window.wizard.onCoatChange = window.debounce(function (color) {
-    coatColor = color;
-    updateWizards();
-  });
-
-  window.wizard.onFireballChange = window.debounce(function (color) {
-    fireBallColor = color;
-    updateWizards();
+  window.myWizard.onChange = window.debounce(function () {
+    updateFilter();
   });
 
   // Загрузка волшебников с сервера.
   var onSuccess = function (data) {
     wizards = data;
-    updateWizards();
+    updateFilter();
   };
 
   window.backend.load(onSuccess, window.utils.onError);
